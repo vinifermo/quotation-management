@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
@@ -15,7 +16,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Entity
 @Table(name = "t_quotes", schema = "public")
-public class Quote {
+public class Quote implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -37,5 +38,6 @@ public class Quote {
     public Quote(QuoteRequestDTO quotesRequestDTO) {
         this.date = quotesRequestDTO.getDate();
         this.price = quotesRequestDTO.getPrice();
+        this.stock = getStock();
     }
 }

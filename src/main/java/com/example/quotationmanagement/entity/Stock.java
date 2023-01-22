@@ -1,6 +1,7 @@
 package com.example.quotationmanagement.entity;
 
 
+import com.example.quotationmanagement.requestDTO.QuoteRequestDTO;
 import com.example.quotationmanagement.responseDTO.QuoteByStockIdResponseDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
@@ -24,6 +25,7 @@ public class Stock {
     private UUID id;
 
     @Column(name = "name")
+    @JsonIgnore
     private String name;
 
     @Column(name = "id_stock")
@@ -32,4 +34,9 @@ public class Stock {
     @JsonIgnore
     @OneToMany(mappedBy = "stock")
     private List<Quote> quotes;
+
+    public Stock(QuoteRequestDTO quotesRequestDTO) {
+        this.stockid = quotesRequestDTO.getStock().getStockid();
+        this.quotes = quotesRequestDTO.getStock().getQuotes();
+    }
 }

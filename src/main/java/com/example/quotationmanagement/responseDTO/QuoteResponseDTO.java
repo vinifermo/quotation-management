@@ -17,7 +17,6 @@ public class QuoteResponseDTO {
 
     private BigDecimal price;
 
-    private String stockid;
 
 
     public QuoteResponseDTO(Quote quotes) {

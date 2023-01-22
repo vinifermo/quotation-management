@@ -1,5 +1,6 @@
 package com.example.quotationmanagement.requestDTO;
 
+import com.example.quotationmanagement.entity.Stock;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,4 +17,5 @@ public class QuoteRequestDTO {
 
     private BigDecimal price;
 
+    private Stock stock;
 }

@@ -1,9 +1,12 @@
 package com.example.quotationmanagement.service;
 
 import com.example.quotationmanagement.entity.Quote;
+import com.example.quotationmanagement.entity.Stock;
 import com.example.quotationmanagement.repository.QuotesRepository;
 import com.example.quotationmanagement.requestDTO.QuoteRequestDTO;
 import com.example.quotationmanagement.responseDTO.QuoteByStockIdResponseDTO;
+import com.example.quotationmanagement.rest.dto.StockResponseDTO;
+import com.example.quotationmanagement.rest.service.StockService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -18,6 +21,9 @@ public class QuotesServiceImpl implements QuotesService {
 
     private final QuotesRepository repository;
 
+    private final StockService stockService;
+
+
 
     public List<Quote> findAll() {
         return repository.findAll();
@@ -28,9 +34,26 @@ public class QuotesServiceImpl implements QuotesService {
     }
 
     public Quote create(QuoteRequestDTO quotesRequestDTO) {
+        validarExistenciaDeUmStock(quotesRequestDTO);
+
+        return salvarEntidadeNoBanco(quotesRequestDTO);
+    }
+
+    private Quote salvarEntidadeNoBanco(QuoteRequestDTO quotesRequestDTO) {
         Quote quotes = new Quote(quotesRequestDTO);
 
         return repository.save(quotes);
+    }
+
+    private void validarExistenciaDeUmStock(QuoteRequestDTO quotesRequestDTO) {
+        String stockid = quotesRequestDTO.getStock().getStockid();      //Pesquisar sobre SRP.
+
+        List<StockResponseDTO> getAll = stockService.getAll();          //Se EXISTIR UMA CONDIÇÃO BLOQUEANTE, É NECESSARIO SER SEMPRE A PRIMEIRA A SER EXECUTADA.
+
+        boolean anyMatch = getAll.stream()
+                .anyMatch((obj) -> obj.getId().equals(stockid));
+        if (!anyMatch)
+            throw new ResponseStatusException((HttpStatus.NOT_FOUND));
     }
 
     public QuoteByStockIdResponseDTO findByStockStockid(String stockid) {

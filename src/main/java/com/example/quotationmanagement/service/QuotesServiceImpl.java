@@ -1,7 +1,6 @@
 package com.example.quotationmanagement.service;
 
 import com.example.quotationmanagement.entity.Quote;
-import com.example.quotationmanagement.entity.Stock;
 import com.example.quotationmanagement.repository.QuotesRepository;
 import com.example.quotationmanagement.requestDTO.QuoteRequestDTO;
 import com.example.quotationmanagement.responseDTO.QuoteByStockIdResponseDTO;
@@ -22,7 +21,6 @@ public class QuotesServiceImpl implements QuotesService {
     private final QuotesRepository repository;
 
     private final StockService stockService;
-
 
 
     public List<Quote> findAll() {
@@ -46,9 +44,9 @@ public class QuotesServiceImpl implements QuotesService {
     }
 
     private void validarExistenciaDeUmStock(QuoteRequestDTO quotesRequestDTO) {
-        String stockid = quotesRequestDTO.getStock().getStockid();      //Pesquisar sobre SRP.
+        String stockid = quotesRequestDTO.getStock().getStockid();
 
-        List<StockResponseDTO> getAll = stockService.getAll();          //Se EXISTIR UMA CONDIÇÃO BLOQUEANTE, É NECESSARIO SER SEMPRE A PRIMEIRA A SER EXECUTADA.
+        List<StockResponseDTO> getAll = stockService.getAll();
 
         boolean anyMatch = getAll.stream()
                 .anyMatch((obj) -> obj.getId().equals(stockid));

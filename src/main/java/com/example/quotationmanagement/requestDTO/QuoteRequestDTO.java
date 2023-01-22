@@ -14,8 +14,6 @@ import java.time.LocalDate;
 public class QuoteRequestDTO {
 
     private LocalDate date;
-
     private BigDecimal price;
-
     private Stock stock;
 }

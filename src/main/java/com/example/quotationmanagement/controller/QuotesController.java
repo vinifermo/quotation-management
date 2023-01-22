@@ -1,7 +1,6 @@
 package com.example.quotationmanagement.controller;
 
 import com.example.quotationmanagement.entity.Quote;
-import com.example.quotationmanagement.entity.Stock;
 import com.example.quotationmanagement.requestDTO.QuoteRequestDTO;
 import com.example.quotationmanagement.responseDTO.QuoteByStockIdResponseDTO;
 import com.example.quotationmanagement.responseDTO.QuoteResponseDTO;
@@ -11,7 +10,6 @@ import com.example.quotationmanagement.service.QuotesService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.repository.query.Param;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -29,7 +27,6 @@ public class QuotesController {
     private final QuotesService service;
 
     private final StockService stockService;
-
 
 
     @GetMapping

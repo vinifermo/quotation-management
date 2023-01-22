@@ -2,7 +2,6 @@ package com.example.quotationmanagement.entity;
 
 
 import com.example.quotationmanagement.requestDTO.QuoteRequestDTO;
-import com.example.quotationmanagement.responseDTO.QuoteByStockIdResponseDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;

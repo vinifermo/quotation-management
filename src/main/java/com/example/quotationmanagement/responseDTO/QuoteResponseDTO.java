@@ -17,8 +17,6 @@ public class QuoteResponseDTO {
 
     private BigDecimal price;
 
-
-
     public QuoteResponseDTO(Quote quotes) {
         this.date = quotes.getDate();
         this.price = quotes.getPrice();

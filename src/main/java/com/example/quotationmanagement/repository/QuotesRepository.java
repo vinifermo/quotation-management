@@ -7,6 +7,6 @@ import java.util.List;
 import java.util.UUID;
 
 public interface QuotesRepository extends JpaRepository<Quote, UUID> {
-
     List<Quote> findByStockStockid(String stock_id);
+
 }

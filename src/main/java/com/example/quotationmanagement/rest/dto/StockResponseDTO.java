@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class StockResponseDTO  {
+public class StockResponseDTO {
 
     @JsonProperty(value = "id")
     private String id;

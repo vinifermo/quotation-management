@@ -30,7 +30,7 @@ public class QuoteByStockIdResponseDTO {
 
         Quote quote = CollectionUtils.firstElement(quotes);
 
-        if(quote.getStock() != null) {
+        if (quote.getStock() != null) {
             this.id = quote.getStock().getId();
         }
         this.stockId = stockId;
